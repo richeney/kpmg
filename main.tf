@@ -1,0 +1,3 @@
+module "spcreator" {
+  source = "./spcreator"
+}
