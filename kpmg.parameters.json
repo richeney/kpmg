@@ -1,0 +1,7 @@
+{
+  "tenant_id": "a4d4d5cd-20cf-444e-bfe7-3d3ecef3fe94",
+  "client_id": "a12cb8d7-b8e0-4a5e-8332-f3e9aefc53a4",
+  "management_scope": "https://management.azure.com/",
+  "secret": "MY SECRET HERE",
+  "endpoint": "https://management.azure.com/providers/Microsoft.PolicyInsights"
+}
