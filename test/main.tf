@@ -1,13 +1,23 @@
-data "azurerm_client_config" "current" {
+data "azuread_client_config" "current" {
+}
+
+data "azuread_group" "owners" {
+  name = var.owners_group
 }
 
 locals {
-  subscriptions = length(var.subscriptions) > 0 ? var.subscriptions : [data.azurerm_client_config.current.subscription_id]
+  subscriptions = length(var.subscriptions) > 0 ? var.subscriptions : [data.azuread_client_config.current.subscription_id]
 }
 
 resource "azuread_application" "sp" {
   provider = azuread.spcreator
   name     = var.service_principal_name
+  /*
+  owners = [
+    data.azuread_client_config.current.object_id,
+    data.azuread_group.owners.object_id
+  ]
+  */
 }
 
 resource "azuread_service_principal" "sp" {

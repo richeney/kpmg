@@ -19,6 +19,17 @@ resource "azuread_application" "spcreator" {
   }
 }
 
+resource "null_resource" "consent" {
+  triggers = {
+    service_principal_id = azuread_application.spcreator.object_id
+  }
+
+  provisioner "local-exec" {
+    command = "az ad app permission admin-consent --id ${azuread_application.spcreator.object_id}"
+  }
+}
+
+
 resource "azuread_service_principal" "spcreator" {
   application_id = azuread_application.spcreator.application_id
 }
